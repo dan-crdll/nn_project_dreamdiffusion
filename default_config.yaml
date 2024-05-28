@@ -1,0 +1,17 @@
+pretrain:
+  time_dimension: 500
+  train_perc: 0.85
+  seed: 0
+  bsz: 32
+  lr: 2.5e-3
+  epochs: 245
+
+mae:
+  embed_dim: 256
+  encoder_depth: 4
+  encoder_heads: 8
+  decoder_depth: 2
+  decoder_heads: 4
+  mask_perc: 0.75
+  channels: 128 
+
