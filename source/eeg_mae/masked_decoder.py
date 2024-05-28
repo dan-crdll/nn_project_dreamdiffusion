@@ -5,8 +5,6 @@ by Kaiming et al [1].
 import torch
 from torch import nn
 from source.eeg_mae.attention_block import Block
-from source.eeg_mae.mha_block import MHABlock
-from source.eeg_mae.mlp_block import MLP
 
 
 

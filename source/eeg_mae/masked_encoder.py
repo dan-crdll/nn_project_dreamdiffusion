@@ -3,8 +3,6 @@ from torch import nn
 from transformers import PreTrainedModel
 from source.eeg_mae.encoder_config import EncoderConfig
 from source.eeg_mae.attention_block import Block
-from source.eeg_mae.mha_block import MHABlock
-from source.eeg_mae.mlp_block import MLP
 from source.eeg_mae.attention_block import Block
 
 """

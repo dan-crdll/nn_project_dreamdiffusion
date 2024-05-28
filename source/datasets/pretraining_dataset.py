@@ -71,3 +71,6 @@ class EegPretrainDataset(Dataset):
 
     def __getitem__(self, idx):
         return self.ds[idx]
+    
+    def __call__(self):
+        return self.train_ds, self.test_ds
