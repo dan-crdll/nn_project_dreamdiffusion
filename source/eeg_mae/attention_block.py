@@ -24,12 +24,16 @@ class HSA(nn.Module):
                 nn.init.constant_(layer.bias, 0)
 
     def forward(self, x):
+        # Compute query, key, and value for the head
         Q = self.q_linear(x)
         K = self.k_linear(x)
         V = self.v_linear(x)
 
+        # compute attention scores for each head and softmax them to achieve attention probability
         attention_scores = torch.matmul(Q, K.transpose(-2, -1)) / (self.head_dim ** 0.5)
         attention_probs = F.softmax(attention_scores, dim=-1)
+        
+        # compute the output of the head
         attention_output = torch.matmul(attention_probs, V)
         return attention_output
 
@@ -55,9 +59,10 @@ class MHSA(nn.Module):
     def forward(self, x):
         batch_size, seq_length, embed_dim = x.size()
 
-        x = x.view(batch_size, seq_length, self.head_num, self.head_dim).transpose(1, 2)
-        x = torch.cat([head(x[:, i]) for i, head in enumerate(self.heads)], dim=-1)
-        x = x.transpose(1, 2).contiguous().view(batch_size, seq_length, embed_dim)
+        # divide the embeddings for each head and swap dimensions 1 and 2
+        x = x.view(batch_size, seq_length, self.head_num, self.head_dim).transpose(1, 2)    # bsz, n_heads, time_dim, head_dim
+        x = torch.cat([head(x[:, i]) for i, head in enumerate(self.heads)], dim=-1) # concatenate heads results in the last dimension
+        x = x.transpose(1, 2).contiguous().view(batch_size, seq_length, embed_dim) # transpose first two dimensions and transform the result back to original shape
 
         out = self.linear(x)
         return out

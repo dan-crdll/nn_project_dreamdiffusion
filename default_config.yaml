@@ -15,3 +15,6 @@ mae:
   mask_perc: 0.75
   channels: 128 
 
+stablediffusion:
+  model_id: runwayml/stable-diffusion-v1-5
+
