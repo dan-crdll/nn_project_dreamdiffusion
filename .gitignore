@@ -2,4 +2,5 @@ datasets/
 pretrained_models/
 util_notebooks/
 .venv/
+__pycache__/
 !source/datasets
