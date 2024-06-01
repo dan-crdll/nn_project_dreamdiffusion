@@ -1,5 +1,3 @@
- ⚠️ Still a work in progress ️⚠️
-
 ### Re-implementation of the method proposed in ''DreamDiffusion: Generating High-Quality Images from Brain EEG Signals'' by Y. Bai, X. Wang et al.
 *By Daniele Santino Cardullo | 2127806 | cardullo.2127806@studenti.uniroma1.it*
 
@@ -50,3 +48,5 @@ To run the code create a virtual environment and install requirements, then take
 </pre>
 
 #### Links
+- pretrained_models folder: [models](https://drive.google.com/drive/folders/1poRxFQNJvvQrvdihfXYoDAuHgwR3DhAF?usp=drive_link)
+- datasets folder: [drive link](https://drive.google.com/drive/folders/16GqHayWX7ITb02tQ_U4pZtuCpg6CzF47?usp=sharing)
