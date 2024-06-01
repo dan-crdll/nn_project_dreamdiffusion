@@ -9,45 +9,44 @@ This work is part of the Neural Network Course Exam for academic year 2023 / 202
 all the credits for the original work 
 and publication go to the original authors.
 
-###### Preliminary Steps
-In order to be able to run the code with no issues some dependencies
-are required. First of all is suggested to create a pip virtual
-environment, after that it is possible to install all
-packages required by running: `pip install -r requirements.txt`.
+#### Abstract
+DreamDiffusion is a method for generating images directly from electroencephalogram signals. This is achieved by combinating different methodologies such as: self-supervised learning to learn meaningful and efficient latent representations for signals; latent diffusion generative model to generate high quality images; large language model to align signals embeddings with image-text ones.
 
-EEG - ImageNet dataset is also needed and can be downloaded from this
-[link](https://github.com/perceivelab/eeg_visual_classification), 
-the required file is `eeg_5_95_std.pth`, and place it in the root 
-directory as shown in section ''Directory Tree''. We also need to download 
-the set of ImageNet images used in the experiment, it can be 
-downloaded by this [link](https://drive.google.com/file/d/1y7I9bG1zKYqBM94odcox_eQjnP9HGo9-/view?usp=drive_link),
-then place it in the root directory and rename it to `images`.
-###### Directory Tree
-```
-nn_project/
-├── images/
-├── models/
-│   ├── dream_diffusion_pipeline.py
-│   ├── eeg_masked_autoencoder.py
-│   └── utils/
-│       ├── eeg_image_dataset.py
-│       ├── embedding_projector.py
-│       ├── multi_head_self_attention.py
-│       └── pretraining_dataset.py
-├── eeg_5_95_std.pth
-├── pretrain_eeg_mae.py
-├── eeg_to_image.py
-├── finetune_stablediff.py
-├── README.md
-├── requirements.txt
-└── solution_description.ipynb
-```
+#### Run The Code
+To run the code create a virtual environment and install requirements, then take a look at `solution_description.ipynb`.
 
-###### Instructions to run the code
-1. ***EEG MAE PRETRAINING*** to pretrain the autoencoder is possible to run `python ./pretrain_eeg_mae.py <epoch number> <batch size>` a new file will be saved, named `pretrained_model.pth`. _You need to login to wandb_.
-2. ***STABLEDIFFUSION FINETUNING AND CLIP ALIGNMENT*** to align the embeddings with clip and finetune stablediffusion on our dataset you need to run: `python ./finetune_stablediff.py <dataset path> <batch size> <pretrained embedder path>`
-3. ***GENERATE IMAGES*** to generate images from an eeg file you have to run `python ./eeg_to_image <eeg path> <image number> <saving directory path>`
+#### Directory Tree
+<pre>
+📦 nn_project_dreamdiffusion
+├─ .gitignore
+├─ README.md
+├─ default_config.yaml
+├─ requirements.txt
+├─ solution_description.ipynb
+├─ datasets
+│  ├─ finetune_images/
+│  ├─ finetune_dataset.pth
+│  └─ pretrain_dataset.pth
+├─ pretrained_models
+│  ├─ pretrained_mae.ckpt
+│  ├─ finetuned_eeg_encoder.pth
+│  ├─ finetuned_unet.pth
+│  ├─ finetuned_projector_tau.pth
+│  └─ train_loss_mae.csv
+└─ source
+   ├─ datasets
+   │  ├─ finetuning_dataset
+   │  └─ pretraining_dataset.py
+   ├─ eeg_diffusion
+   │  ├─ dream_diffusion.
+   │  └─ projector.py
+   └─ eeg_mae
+      ├─ attention_block.py
+      ├─ eeg_autoencoder.py
+      ├─ encoder_config.py
+      ├─ masked_decoder.py
+      ├─ masked_encoder.py
+      └─ masked_loss.py
+</pre>
 
-###### DreamDiffusion Pipeline
-It is possible to use and import this implementation (along with the pretrained weights) of DreamDiffusion
-using the hugging face diffusion pipeline using the repository: [osusume/finetuned-stable-dream-diffusion](https://huggingface.co/osusume/finetuned-stable-dream-diffusion/tree/main).
+#### Links
